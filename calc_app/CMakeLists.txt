@@ -23,6 +23,9 @@ qt_add_executable(calc_app
 )
 
 
-target_link_libraries(calc_app PRIVATE Qt6::Widgets)
+target_link_libraries(calc_app PRIVATE
+    Qt6::Widgets
+    calc_lib
+)
 
 qt_finalize_executable(calc_app)

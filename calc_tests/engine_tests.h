@@ -7,5 +7,5 @@ public:
     explicit EngineTests(QObject *parent = nullptr);
 
 private slots:
-    void dummyTest();
+    void basicTest();
 };
