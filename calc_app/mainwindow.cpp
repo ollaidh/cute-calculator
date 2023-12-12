@@ -6,8 +6,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-//    connect(ui->onePushButton, &QAbstractButton::clicked, this, &MainWindow::onePushButton_clicked);
-//    connect(ui->twoPushButton, &QAbstractButton::clicked, this, &MainWindow::twoPushButton_clicked);
     connect(ui->onePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
     connect(ui->twoPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
     connect(ui->threePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
@@ -60,26 +58,25 @@ void MainWindow::onButtonClicked()
         {"minusPushButton", '-'},
         {"multPushButton", '*'},
         {"divPushButton", '/'},
-//        {"eqPushButton", '='}
+        {"eqPushButton", '='}
     };
 
     std::vector <std::string> clean_buttons = {"cleanPushButton", "backPushButton"};
 
     QPushButton *senderButton = qobject_cast<QPushButton*>(sender());
     Q_ASSERT(senderButton != nullptr);
-        QString buttonName = senderButton->objectName();
-        qDebug() << "Button clicked: " << buttonName;  // optional - to show in debugger
-        if (digit_buttons.find(buttonName.toStdString()) != digit_buttons.end()) {
-            m_engine.addDigit(digit_buttons[buttonName.toStdString()]);
-        }
-        else if (buttonName.toStdString() == "eqPushButton") {
-            m_engine.calc();
-        }
-        else if (operator_buttons.find(buttonName.toStdString()) != operator_buttons.end()) {
-            m_engine.addOperator(digit_buttons[buttonName.toStdString()]);
-        }
+    QString buttonName = senderButton->objectName();
+    qDebug() << "Button clicked: " << buttonName;  // optional - to show in debugger
+    if (digit_buttons.find(buttonName.toStdString()) != digit_buttons.end()) {
+        m_engine.addDigit(digit_buttons[buttonName.toStdString()]);
+    }
+    else if (operator_buttons.find(buttonName.toStdString()) != operator_buttons.end()) {
+        m_engine.addOperator(operator_buttons[buttonName.toStdString()]);
+//        qDebug() << "Operator: " << operator_buttons[buttonName.toStdString()];
+
+    }
 //        else {
-//            m_engine.
+//            calc, back
 //        }
 
     refreshLabels();
