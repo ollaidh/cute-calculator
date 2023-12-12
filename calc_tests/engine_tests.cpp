@@ -17,8 +17,15 @@ void EngineTests::basicTest()
     engine.addDigit('5');
 
 
-    QCOMPARE("42", engine.number1());
-    QCOMPARE("5", engine.number2());
-    QCOMPARE('+', engine.op());
+    QCOMPARE(engine.number1(), "42");
+    QCOMPARE(engine.number2(), "5");
+    QCOMPARE(engine.op(), '+');
+
+    engine.addOperator('=');
+    QCOMPARE(engine.number1(), "5");
+    QCOMPARE(engine.number2(), "47");
+    QCOMPARE(engine.op(), '=');
+
+
 
 }

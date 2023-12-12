@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "engine.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,10 +18,11 @@ public:
     ~MainWindow();
 
 private slots:
-    void onePushButton_clicked();
+    void onButtonClicked();
+    void refreshLabels();
 
 private:
     Ui::MainWindow *ui;
-    std::string input_symbols;
+    Engine m_engine;
 };
 #endif // MAINWINDOW_H

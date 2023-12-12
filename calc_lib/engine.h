@@ -7,6 +7,7 @@ public:
     Engine();
     void addDigit(char digit);
     void addOperator(char op);
+    double calc();
 
     std::string number1() const;
 
