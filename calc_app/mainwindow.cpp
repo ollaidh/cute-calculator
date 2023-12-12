@@ -8,22 +8,25 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 //    connect(ui->onePushButton, &QAbstractButton::clicked, this, &MainWindow::onePushButton_clicked);
 //    connect(ui->twoPushButton, &QAbstractButton::clicked, this, &MainWindow::twoPushButton_clicked);
-    connect(ui->onePushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->twoPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->threePushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->fourPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->fivePushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->sixPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->sevenPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->eightPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->ninePushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->zeroPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->plusPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->minusPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->multPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->divPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->cleanPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
-    connect(ui->backPushButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
+    connect(ui->onePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->twoPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->threePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->fourPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->fivePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->sixPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->sevenPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->eightPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->ninePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->zeroPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+
+    connect(ui->plusPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->minusPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->multPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->divPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->eqPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+
+    connect(ui->cleanPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->backPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
 }
 
 MainWindow::~MainWindow()
@@ -57,16 +60,20 @@ void MainWindow::onButtonClicked()
         {"minusPushButton", '-'},
         {"multPushButton", '*'},
         {"divPushButton", '/'},
+//        {"eqPushButton", '='}
     };
 
     std::vector <std::string> clean_buttons = {"cleanPushButton", "backPushButton"};
 
     QPushButton *senderButton = qobject_cast<QPushButton*>(sender());
-    if (senderButton) {
+    Q_ASSERT(senderButton != nullptr);
         QString buttonName = senderButton->objectName();
         qDebug() << "Button clicked: " << buttonName;  // optional - to show in debugger
         if (digit_buttons.find(buttonName.toStdString()) != digit_buttons.end()) {
             m_engine.addDigit(digit_buttons[buttonName.toStdString()]);
+        }
+        else if (buttonName.toStdString() == "eqPushButton") {
+            m_engine.calc();
         }
         else if (operator_buttons.find(buttonName.toStdString()) != operator_buttons.end()) {
             m_engine.addOperator(digit_buttons[buttonName.toStdString()]);
@@ -74,7 +81,7 @@ void MainWindow::onButtonClicked()
 //        else {
 //            m_engine.
 //        }
-    }
+
     refreshLabels();
 }
 
