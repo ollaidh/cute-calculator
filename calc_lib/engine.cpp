@@ -14,30 +14,34 @@ void Engine::addDigit(char digit)
         m_number2.push_back(digit);
     }
     else if (m_state == State::CalcResult) {
-        m_number2 = "";
+        m_number1 = m_number2;
         m_state = State::GettingNumber2;
+        m_number2 = "";
         m_number2.push_back(digit);
     }
 }
 
 void Engine::addOperator(char op)
 {
+    if (m_state == State::GettingNumber2 && op != '=') {
+        if (m_number1 != "" and m_number2 != ""){
+            m_number1 = std::to_string(calc());
+            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
+            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
+        }
+    }
     if (op == '=') {
-        m_number1 = std::to_string(calc());
-        m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
-        m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
-        m_state = State::CalcResult;
+        if (m_number1 != "" and m_number2 != ""){
+            m_number1 = std::to_string(calc());
+            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
+            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
+            m_state = State::CalcResult;
+        }
     }
     else {
         m_op = op;
-        if (m_state == State::GettingNumber1)
-        {
-            m_state = State::GettingNumber2;
-        }
-        else
-        {
-            m_state = State::GettingNumber1;
-        }
+        m_number2 = "";
+        m_state = State::GettingNumber2;
     }
 }
 
@@ -58,6 +62,7 @@ double Engine::calc()
     else {
         return 0;
     }
+
 }
 
 std::string Engine::number1() const

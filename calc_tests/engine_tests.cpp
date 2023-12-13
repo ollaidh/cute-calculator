@@ -22,9 +22,9 @@ void EngineTests::basicTest()
     QCOMPARE(engine.op(), '+');
 
     engine.addOperator('=');
-    QCOMPARE(engine.number1(), "5");
-    QCOMPARE(engine.number2(), "47");
-    QCOMPARE(engine.op(), '=');
+    QCOMPARE(engine.number1(), "47");
+    QCOMPARE(engine.number2(), "5");
+    QCOMPARE(engine.op(), '+');
 
 
 
