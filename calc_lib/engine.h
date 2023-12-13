@@ -22,7 +22,8 @@ private:
     enum class State
     {
         GettingNumber1,
-        GettingNumber2
+        GettingNumber2,
+        CalcResult
     };
     State m_state;
 

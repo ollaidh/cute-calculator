@@ -7,23 +7,26 @@ Engine::Engine()
 
 void Engine::addDigit(char digit)
 {
-    if (m_state == State::GettingNumber1)
-    {
+    if (m_state == State::GettingNumber1) {
         m_number1.push_back(digit);
     }
-    else
-    {
+    else if (m_state == State::GettingNumber2) {
         m_number2.push_back(digit);
     }
-
+    else if (m_state == State::CalcResult) {
+        m_number2 = "";
+        m_state = State::GettingNumber2;
+        m_number2.push_back(digit);
+    }
 }
 
 void Engine::addOperator(char op)
 {
     if (op == '=') {
         m_number1 = std::to_string(calc());
-        m_number1.erase ( m_number2.find_last_not_of('0') + 1, std::string::npos );
-        m_number1.erase ( m_number2.find_last_not_of('.') + 1, std::string::npos );
+        m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
+        m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
+        m_state = State::CalcResult;
     }
     else {
         m_op = op;
