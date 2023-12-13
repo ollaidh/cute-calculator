@@ -58,7 +58,10 @@ void MainWindow::onButtonClicked()
         {"minusPushButton", '-'},
         {"multPushButton", '*'},
         {"divPushButton", '/'},
-        {"eqPushButton", '='}
+        {"eqPushButton", '='},
+        {"cleanPushButton", 'C'},
+        {"backPushButton", 'B'},
+
     };
 
     std::vector <std::string> clean_buttons = {"cleanPushButton", "backPushButton"};

@@ -23,6 +23,13 @@ void Engine::addDigit(char digit)
 
 void Engine::addOperator(char op)
 {
+    if (op == 'C') {
+        m_number1 = "";
+        m_number2 = "";
+        m_state = State::GettingNumber1;
+        return;
+    }
+
     if (m_state == State::GettingNumber2 && op != '=') {
         if (m_number1 != "" and m_number2 != ""){
             m_number1 = std::to_string(calc());
