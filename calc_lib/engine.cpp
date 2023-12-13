@@ -26,6 +26,7 @@ void Engine::addOperator(char op)
     if (op == 'C') {
         m_number1 = "";
         m_number2 = "";
+        m_op = '\0';
         m_state = State::GettingNumber1;
         return;
     }

@@ -26,6 +26,22 @@ void EngineTests::basicTest()
     QCOMPARE(engine.number2(), "5");
     QCOMPARE(engine.op(), '+');
 
+    engine.addOperator('-');
+    engine.addDigit('1');
+    engine.addDigit('7');
+    engine.addOperator('=');
+    QCOMPARE(engine.number2(), "17");
+    QCOMPARE(engine.number1(), "30");
+    QCOMPARE(engine.op(), '-');
 
+    engine.addOperator('=');
+    QCOMPARE(engine.number2(), "17");
+    QCOMPARE(engine.number1(), "13");
+    QCOMPARE(engine.op(), '-');
+
+    engine.addOperator('C');
+    QCOMPARE(engine.number2(), "");
+    QCOMPARE(engine.number1(), "");
+    QCOMPARE(engine.op(), '\0');
 
 }
