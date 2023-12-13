@@ -20,24 +20,22 @@ void Engine::addDigit(char digit)
 
 void Engine::addOperator(char op)
 {
-    if (m_state == State::GettingNumber1)
-    {
-        m_state = State::GettingNumber2;
-    }
-    else
-    {
-        m_state = State::GettingNumber1;
-    }
     if (op == '=') {
-        std::string temp = m_number2;
-        m_number2 = std::to_string(calc());
-        m_number2.erase ( m_number2.find_last_not_of('0') + 1, std::string::npos );
-        m_number2.erase ( m_number2.find_last_not_of('.') + 1, std::string::npos );
-        m_number1 = temp;
+        m_number1 = std::to_string(calc());
+        m_number1.erase ( m_number2.find_last_not_of('0') + 1, std::string::npos );
+        m_number1.erase ( m_number2.find_last_not_of('.') + 1, std::string::npos );
     }
-    m_op = op;
-
-
+    else {
+        m_op = op;
+        if (m_state == State::GettingNumber1)
+        {
+            m_state = State::GettingNumber2;
+        }
+        else
+        {
+            m_state = State::GettingNumber1;
+        }
+    }
 }
 
 double Engine::calc()

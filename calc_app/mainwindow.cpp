@@ -72,7 +72,6 @@ void MainWindow::onButtonClicked()
     }
     else if (operator_buttons.find(buttonName.toStdString()) != operator_buttons.end()) {
         m_engine.addOperator(operator_buttons[buttonName.toStdString()]);
-//        qDebug() << "Operator: " << operator_buttons[buttonName.toStdString()];
 
     }
 //        else {

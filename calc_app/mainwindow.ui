@@ -309,6 +309,19 @@
      <string>Back</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>45</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RESULT=</string>
+    </property>
+   </widget>
    <zorder>frame</zorder>
    <zorder>frame_3</zorder>
    <zorder>onePushButton</zorder>
@@ -328,6 +341,7 @@
    <zorder>eqPushButton</zorder>
    <zorder>cleanPushButton</zorder>
    <zorder>backPushButton</zorder>
+   <zorder>label</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
