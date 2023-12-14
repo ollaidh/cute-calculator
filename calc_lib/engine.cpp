@@ -30,6 +30,20 @@ void Engine::addOperator(char op)
         m_state = State::GettingNumber1;
         return;
     }
+    if (op == 'B') {
+        if (m_state == State::CalcResult) {
+            m_number2 = "";
+            m_state = State::GettingNumber2;
+        }
+        else if (m_state == State::GettingNumber1) {
+           m_number1 = "";
+        }
+        else if (m_state == State::GettingNumber2) {
+           m_number2 = "";
+        }
+        return;
+
+    }
 
     if (m_state == State::GettingNumber2 && op != '=') {
         if (m_number1 != "" and m_number2 != ""){
@@ -87,3 +101,4 @@ char Engine::op() const
 {
     return m_op;
 }
+

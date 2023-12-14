@@ -44,4 +44,28 @@ void EngineTests::basicTest()
     QCOMPARE(engine.number1(), "");
     QCOMPARE(engine.op(), '\0');
 
+    engine.addDigit('1');
+    engine.addDigit('0');
+    engine.addOperator('*');
+    QCOMPARE(engine.op(), '*');
+    QCOMPARE(engine.number1(), "10");
+    engine.addDigit('5');
+    engine.addOperator('B');
+
+    QCOMPARE(engine.op(), '*');
+    QCOMPARE(engine.number1(), "10");
+    QCOMPARE(engine.number2(), "");
+    engine.addDigit('2');
+    engine.addDigit('0');
+    engine.addOperator('=');
+    QCOMPARE(engine.number2(), "20");
+    QCOMPARE(engine.number1(), "200");
+    QCOMPARE(engine.op(), '*');
+
+    engine.addOperator('B');
+    QCOMPARE(engine.number2(), "");
+    QCOMPARE(engine.number1(), "200");
+    QCOMPARE(engine.op(), '*');
+
+
 }
