@@ -8,4 +8,5 @@ public:
 
 private slots:
     void basicTest();
+    void onlyFirstNumberTest();
 };

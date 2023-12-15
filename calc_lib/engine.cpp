@@ -53,12 +53,17 @@ void Engine::addOperator(char op)
         }
     }
     if (op == '=') {
-        if (m_number1 != "" and m_number2 != ""){
+        if (m_number1 != "" and m_number2 == "") {
+            m_number2 = "0";
+            m_op = '+';
+        }
+        if (m_number1 != "" and m_number2 != "") {
             m_number1 = std::to_string(calc());
             m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
             m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
             m_state = State::CalcResult;
         }
+
     }
     else {
         m_op = op;

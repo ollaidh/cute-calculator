@@ -69,3 +69,20 @@ void EngineTests::basicTest()
 
 
 }
+
+void EngineTests::onlyFirstNumberTest()
+{
+    Engine engine;
+
+    engine.addDigit('2');
+    engine.addDigit('0');
+    engine.addOperator('=');
+
+    QCOMPARE(engine.number2(), "0");
+    QCOMPARE(engine.number1(), "20");
+
+    engine.addOperator('=');
+
+    QCOMPARE(engine.number2(), "0");
+    QCOMPARE(engine.number1(), "20");
+}
