@@ -87,7 +87,7 @@ void EngineTests::onlyFirstNumberTest()
     QCOMPARE(engine.number1(), "20");
 }
 
-void EngineTests::numberEndWithPeriodTest()
+void EngineTests::numberWithPeriodTest()
 {
     Engine engine;
 
