@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->eightPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
     connect(ui->ninePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
     connect(ui->zeroPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    connect(ui->periodPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
 
     connect(ui->plusPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
     connect(ui->minusPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
@@ -51,7 +52,8 @@ void MainWindow::onButtonClicked()
         {"sevenPushButton", '7'},
         {"eightPushButton", '8'},
         {"ninePushButton", '9'},
-        {"zeroPushButton", '0'}
+        {"zeroPushButton", '0'},
+        {"periodPushButton", '.'}
     };
     std::map <std::string, char> operator_buttons = {
         {"plusPushButton", '+'},
@@ -77,9 +79,6 @@ void MainWindow::onButtonClicked()
         m_engine.addOperator(operator_buttons[buttonName.toStdString()]);
 
     }
-//        else {
-//            calc, back
-//        }
 
     refreshLabels();
 }
