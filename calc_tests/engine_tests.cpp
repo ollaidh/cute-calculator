@@ -86,3 +86,26 @@ void EngineTests::onlyFirstNumberTest()
     QCOMPARE(engine.number2(), "0");
     QCOMPARE(engine.number1(), "20");
 }
+
+void EngineTests::numberEndWithPeriodTest()
+{
+    Engine engine;
+
+    engine.addDigit('2');
+    engine.addDigit('0');
+    engine.addDigit('.');
+    engine.addOperator('=');
+
+    QCOMPARE(engine.number2(), "0");
+    QCOMPARE(engine.number1(), "20");
+
+    engine.addOperator('+');
+    engine.addDigit('1');
+    engine.addDigit('5');
+    engine.addDigit('.');
+    engine.addDigit('.');
+    engine.addOperator('=');
+
+    QCOMPARE(engine.number1(), "35");
+    QCOMPARE(engine.number2(), "15");
+}

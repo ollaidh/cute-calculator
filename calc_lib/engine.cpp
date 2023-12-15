@@ -8,9 +8,16 @@ Engine::Engine()
 void Engine::addDigit(char digit)
 {
     if (m_state == State::GettingNumber1) {
+        if (digit == '.' and m_number1.find('.') != std::string::npos) {
+            return;
+        }
         m_number1.push_back(digit);
+
     }
     else if (m_state == State::GettingNumber2) {
+        if (digit == '.' and m_number2.find('.') != std::string::npos) {
+            return;
+        }
         m_number2.push_back(digit);
     }
     else if (m_state == State::CalcResult) {
@@ -23,6 +30,13 @@ void Engine::addDigit(char digit)
 
 void Engine::addOperator(char op)
 {
+
+    if (m_number1.back() == '.') {
+        m_number1.pop_back();
+    }
+    if (m_number2.back() == '.') {
+        m_number2.pop_back();
+    }
     if (op == 'C') {
         m_number1 = "";
         m_number2 = "";
