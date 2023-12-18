@@ -65,9 +65,7 @@ void Engine::addOperator(char op)
 
     if (m_state == State::GettingNumber2) {
         if (m_number1 != "" and m_number2 != ""){
-           m_number1 = std::to_string(calc());
-           m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
-           m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
+           m_number1 = calc();
            m_state = State::CalcResult;
        }
         if (op != '=') {
@@ -89,11 +87,9 @@ void Engine::addOperator(char op)
             m_state = State::GettingNumber2;
         }
     }
-    else {  // m_state = State::CalcResult
+    else if (m_state == State::CalcResult) {
         if (op == '=') {
-            m_number1 = std::to_string(calc());
-            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
-            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
+            m_number1 = calc();
         }
         else {
             m_op = op;
@@ -103,23 +99,27 @@ void Engine::addOperator(char op)
     }
 }
 
-double Engine::calc()
+std::string Engine::calc()
 {
+    std::string result;
     if (m_op == '+') {
-        return std::stod(m_number1) + std::stod(m_number2);
+        result = std::to_string(std::stod(m_number1) + std::stod(m_number2));
     }
     else if (m_op == '-') {
-        return std::stod(m_number1) - std::stod(m_number2);
+        result = std::to_string(std::stod(m_number1) - std::stod(m_number2));
     }
     else if (m_op == '*') {
-        return std::stod(m_number1) * std::stod(m_number2);
+        result = std::to_string(std::stod(m_number1) * std::stod(m_number2));
     }
     else if (m_op == '/') {
-        return std::stod(m_number1) / std::stod(m_number2);
+        result = std::to_string(std::stod(m_number1) / std::stod(m_number2));
     }
     else {
-        return 0;
+        result = "";
     }
+    result.erase ( result.find_last_not_of('0') + 1, std::string::npos );
+    result.erase ( result.find_last_not_of('.') + 1, std::string::npos );
+    return result;
 
 }
 

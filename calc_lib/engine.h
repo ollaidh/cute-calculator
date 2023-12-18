@@ -7,14 +7,15 @@ class Engine
     {
         GettingNumber1,
         GettingNumber2,
-        CalcResult
+        CalcResult,
+        UndefinedResult
     };
 
 public:
     Engine();
     void addDigit(char digit);
     void addOperator(char op);
-    double calc();
+    std::string calc();
 
     std::string number1() const;
 
