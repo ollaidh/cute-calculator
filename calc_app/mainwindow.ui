@@ -335,6 +335,58 @@
      <string>.</string>
     </property>
    </widget>
+   <widget class="QLabel" name="op_label">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>40</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="state_label">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>90</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_op_2">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>40</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Operator:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_state_2">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>90</y>
+      <width>58</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>State:</string>
+    </property>
+   </widget>
    <zorder>frame</zorder>
    <zorder>frame_3</zorder>
    <zorder>onePushButton</zorder>
@@ -356,6 +408,10 @@
    <zorder>backPushButton</zorder>
    <zorder>label</zorder>
    <zorder>periodPushButton</zorder>
+   <zorder>op_label</zorder>
+   <zorder>state_label</zorder>
+   <zorder>label_op_2</zorder>
+   <zorder>label_state_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

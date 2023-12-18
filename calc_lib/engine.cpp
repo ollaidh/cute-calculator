@@ -5,6 +5,15 @@ Engine::Engine()
     m_state = State::GettingNumber1;
 }
 
+void Engine::shrinkPeriods() {
+    if (m_number1.back() == '.') {
+        m_number1.pop_back();
+    }
+    if (m_number2.back() == '.') {
+        m_number2.pop_back();
+    }
+}
+
 void Engine::addDigit(char digit)
 {
     if (m_state == State::GettingNumber1) {
@@ -30,13 +39,8 @@ void Engine::addDigit(char digit)
 
 void Engine::addOperator(char op)
 {
+    shrinkPeriods();
 
-    if (m_number1.back() == '.') {
-        m_number1.pop_back();
-    }
-    if (m_number2.back() == '.') {
-        m_number2.pop_back();
-    }
     if (op == 'C') {
         m_number1 = "";
         m_number2 = "";
@@ -59,30 +63,51 @@ void Engine::addOperator(char op)
 
     }
 
-    if (m_state == State::GettingNumber2 && op != '=') {
+    if (m_state == State::GettingNumber2) {
         if (m_number1 != "" and m_number2 != ""){
-            m_number1 = std::to_string(calc());
-            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
-            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
-        }
+           m_number1 = std::to_string(calc());
+           m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
+           m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
+           if (op == '=') {
+                m_state = State::CalcResult;
+           }
+       }
     }
-    if (op == '=') {
-        if (m_number1 != "" and m_number2 == "") {
-            m_number2 = "0";
-            m_op = '+';
-        }
-        if (m_number1 != "" and m_number2 != "") {
-            m_number1 = std::to_string(calc());
-            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
-            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
-            m_state = State::CalcResult;
-        }
 
-    }
-    else {
-        m_op = op;
-        m_number2 = "";
-        m_state = State::GettingNumber2;
+//    if (m_state == State::GettingNumber2 && op != '=') {
+//        if (m_number1 != "" and m_number2 != ""){
+//            m_number1 = std::to_string(calc());
+//            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
+//            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
+//        }
+//    }
+//    if (op == '=') {
+//        if (m_number1 != "" and m_number2 == "") {
+//            m_number2 = "0";
+//            m_op = '+';
+//        }
+//        if (m_number1 != "" and m_number2 != "") {
+//            m_number1 = std::to_string(calc());
+//            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
+//            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
+//            m_state = State::CalcResult;
+//        }
+
+//    }
+    else if (m_state == State::GettingNumber1) {
+        if (op == '=') {
+            if (m_number1 != "" and m_number2 == "") {
+                m_number2 = "0";
+                m_op = '+';
+                m_state = State::CalcResult;
+
+            }
+        }
+        else {
+            m_op = op;
+            m_number2 = "";
+            m_state = State::GettingNumber2;
+        }
     }
 }
 
@@ -116,8 +141,27 @@ std::string Engine::number2() const
     return m_number2;
 }
 
-char Engine::op() const
+std::string Engine::op() const
 {
-    return m_op;
+    std::string result;
+    result.push_back(m_op);
+    return result;
+}
+
+std::string Engine::state() const
+{
+    if (m_state == State::GettingNumber1) {
+        return "GettingNumber1";
+
+    }
+    else if (m_state == State::GettingNumber2) {
+        return "GettingNumber2";
+
+    }
+    else if (m_state == State::CalcResult) {
+        return "CalcResult";
+
+    }
+    return "";
 }
 

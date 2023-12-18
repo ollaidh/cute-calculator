@@ -38,6 +38,9 @@ void MainWindow::refreshLabels()
 {
     ui->num1_label->setText(QString::fromStdString(m_engine.number1()));
     ui->num2_label->setText(QString::fromStdString(m_engine.number2()));
+    ui->op_label->setText(QString::fromStdString(m_engine.op()));
+    ui->state_label->setText(QString::fromStdString(m_engine.state()));
+
 }
 
 void MainWindow::onButtonClicked()

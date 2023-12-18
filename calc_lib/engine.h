@@ -3,6 +3,13 @@
 
 class Engine
 {
+    enum class State
+    {
+        GettingNumber1,
+        GettingNumber2,
+        CalcResult
+    };
+
 public:
     Engine();
     void addDigit(char digit);
@@ -13,18 +20,18 @@ public:
 
     std::string number2() const;
 
-    char op() const;
+    std::string op() const;
+
+    std::string state() const;
 
 private:
     std::string m_number1;
     std::string m_number2;
     char m_op;
-    enum class State
-    {
-        GettingNumber1,
-        GettingNumber2,
-        CalcResult
-    };
+
     State m_state;
+
+    void shrinkPeriods();
+
 
 };
