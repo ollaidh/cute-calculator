@@ -42,7 +42,7 @@ void EngineTests::basicTest()
     engine.addOperator('C');
     QCOMPARE(engine.number2(), "");
     QCOMPARE(engine.number1(), "");
-    QCOMPARE(engine.op(), "\0");
+    QCOMPARE(engine.op(), "");
 
     engine.addDigit('1');
     engine.addDigit('0');
@@ -98,7 +98,7 @@ void EngineTests::numberWithPeriodTest()
 
     QCOMPARE(engine.number2(), "0");
     QCOMPARE(engine.number1(), "20");
-    QCOMPARE(engine.op(), "=");
+    QCOMPARE(engine.op(), "+");
 
 
     engine.addOperator('+');
@@ -111,4 +111,23 @@ void EngineTests::numberWithPeriodTest()
 
     QCOMPARE(engine.number1(), "35");
     QCOMPARE(engine.number2(), "15");
+}
+
+void EngineTests::twoOperatorsInaRowTest()
+{
+    Engine engine;
+
+    engine.addDigit('2');
+    engine.addDigit('0');
+
+    engine.addOperator('*');
+
+    engine.addOperator('/');
+
+    engine.addDigit('5');
+
+    QCOMPARE(engine.number1(), "4");
+    QCOMPARE(engine.number2(), "5");
+    QCOMPARE(engine.op(), "/");
+
 }

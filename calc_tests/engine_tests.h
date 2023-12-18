@@ -10,4 +10,5 @@ private slots:
     void basicTest();
     void onlyFirstNumberTest();
     void numberWithPeriodTest();
+    void twoOperatorsInaRowTest();
 };

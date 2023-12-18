@@ -30,7 +30,7 @@ void Engine::addDigit(char digit)
         m_number2.push_back(digit);
     }
     else if (m_state == State::CalcResult) {
-        m_number1 = m_number2;
+//        m_number1 = m_number2;
         m_state = State::GettingNumber2;
         m_number2 = "";
         m_number2.push_back(digit);
@@ -68,32 +68,9 @@ void Engine::addOperator(char op)
            m_number1 = std::to_string(calc());
            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
-           if (op == '=') {
-                m_state = State::CalcResult;
-           }
+           m_state = State::CalcResult;
        }
     }
-
-//    if (m_state == State::GettingNumber2 && op != '=') {
-//        if (m_number1 != "" and m_number2 != ""){
-//            m_number1 = std::to_string(calc());
-//            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
-//            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
-//        }
-//    }
-//    if (op == '=') {
-//        if (m_number1 != "" and m_number2 == "") {
-//            m_number2 = "0";
-//            m_op = '+';
-//        }
-//        if (m_number1 != "" and m_number2 != "") {
-//            m_number1 = std::to_string(calc());
-//            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
-//            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
-//            m_state = State::CalcResult;
-//        }
-
-//    }
     else if (m_state == State::GettingNumber1) {
         if (op == '=') {
             if (m_number1 != "" and m_number2 == "") {
@@ -102,6 +79,18 @@ void Engine::addOperator(char op)
                 m_state = State::CalcResult;
 
             }
+        }
+        else {
+            m_op = op;
+            m_number2 = "";
+            m_state = State::GettingNumber2;
+        }
+    }
+    else {  // m_state = State::CalcResult
+        if (op == '=') {
+            m_number1 = std::to_string(calc());
+            m_number1.erase ( m_number1.find_last_not_of('0') + 1, std::string::npos );
+            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
         }
         else {
             m_op = op;
@@ -143,6 +132,9 @@ std::string Engine::number2() const
 
 std::string Engine::op() const
 {
+    if (m_op == '\0') {
+        return "";
+    }
     std::string result;
     result.push_back(m_op);
     return result;
