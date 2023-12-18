@@ -70,6 +70,9 @@ void Engine::addOperator(char op)
            m_number1.erase ( m_number1.find_last_not_of('.') + 1, std::string::npos );
            m_state = State::CalcResult;
        }
+        if (op != '=') {
+           m_op = op;
+        }
     }
     else if (m_state == State::GettingNumber1) {
         if (op == '=') {

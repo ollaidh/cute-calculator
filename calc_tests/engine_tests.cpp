@@ -126,6 +126,8 @@ void EngineTests::twoOperatorsInaRowTest()
 
     engine.addDigit('5');
 
+    engine.addOperator('=');
+
     QCOMPARE(engine.number1(), "4");
     QCOMPARE(engine.number2(), "5");
     QCOMPARE(engine.op(), "/");
