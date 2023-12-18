@@ -3,7 +3,7 @@
 
 class Engine
 {
-    enum class State
+    enum State
     {
         GettingNumber1,
         GettingNumber2,

@@ -11,4 +11,5 @@ private slots:
     void onlyFirstNumberTest();
     void numberWithPeriodTest();
     void twoOperatorsInaRowTest();
+    void divisionByZeroTest();
 };

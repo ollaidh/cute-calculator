@@ -133,3 +133,52 @@ void EngineTests::twoOperatorsInaRowTest()
     QCOMPARE(engine.op(), "/");
 
 }
+
+void EngineTests::divisionByZeroTest()
+{
+    Engine engine;
+
+    engine.addDigit('2');
+    engine.addDigit('0');
+    engine.addOperator('/');
+    engine.addDigit('0');
+    engine.addOperator('=');
+
+    QCOMPARE(engine.number1(), "Division by Zero: Undefined Result");
+    QCOMPARE(engine.number2(), "0");
+
+    engine.addDigit('3');
+
+    QCOMPARE(engine.number1(), "3");
+    QCOMPARE(engine.number2(), "");
+
+    engine.addDigit('2');
+
+    QCOMPARE(engine.number1(), "32");
+    QCOMPARE(engine.number2(), "");
+
+    engine.addOperator('*');
+    engine.addDigit('2');
+
+    QCOMPARE(engine.number1(), "32");
+    QCOMPARE(engine.number2(), "2");
+    QCOMPARE(engine.op(), "*");
+
+    engine.addOperator('=');
+    QCOMPARE(engine.number1(), "64");
+    QCOMPARE(engine.number2(), "2");
+
+    engine.addOperator('=');
+    engine.addOperator('/');
+    engine.addDigit('0');
+    engine.addOperator('=');
+
+    QCOMPARE(engine.number1(), "Division by Zero: Undefined Result");
+    QCOMPARE(engine.number2(), "0");
+
+    engine.addOperator('*');
+    QCOMPARE(engine.number1(), "");
+    QCOMPARE(engine.number2(), "");
+
+
+}

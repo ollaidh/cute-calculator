@@ -16,6 +16,12 @@ void Engine::shrinkPeriods() {
 
 void Engine::addDigit(char digit)
 {
+    if  (m_state == State::UndefinedResult) {
+        m_number1 = "";
+        m_number2 = "";
+        m_state = State::GettingNumber1;
+    }
+
     if (m_state == State::GettingNumber1) {
         if (digit == '.' and m_number1.find('.') != std::string::npos) {
             return;
@@ -41,6 +47,10 @@ void Engine::addOperator(char op)
 {
     shrinkPeriods();
 
+    if  (m_state == State::UndefinedResult) {
+        op = 'C';
+    }
+
     if (op == 'C') {
         m_number1 = "";
         m_number2 = "";
@@ -48,6 +58,7 @@ void Engine::addOperator(char op)
         m_state = State::GettingNumber1;
         return;
     }
+
     if (op == 'B') {
         if (m_state == State::CalcResult) {
             m_number2 = "";
@@ -65,8 +76,8 @@ void Engine::addOperator(char op)
 
     if (m_state == State::GettingNumber2) {
         if (m_number1 != "" and m_number2 != ""){
-           m_number1 = calc();
            m_state = State::CalcResult;
+           m_number1 = calc();
        }
         if (op != '=') {
            m_op = op;
@@ -112,7 +123,13 @@ std::string Engine::calc()
         result = std::to_string(std::stod(m_number1) * std::stod(m_number2));
     }
     else if (m_op == '/') {
-        result = std::to_string(std::stod(m_number1) / std::stod(m_number2));
+        if (m_number2 != "0") {
+            result = std::to_string(std::stod(m_number1) / std::stod(m_number2));
+        }
+        else {
+            result = "Division by Zero: Undefined Result";
+            m_state = State::UndefinedResult;
+        }
     }
     else {
         result = "";
@@ -145,17 +162,17 @@ std::string Engine::op() const
 
 std::string Engine::state() const
 {
-    if (m_state == State::GettingNumber1) {
+    if (m_state == GettingNumber1) {
         return "GettingNumber1";
-
     }
-    else if (m_state == State::GettingNumber2) {
+    if (m_state == GettingNumber2) {
         return "GettingNumber2";
-
     }
-    else if (m_state == State::CalcResult) {
+    if (m_state == CalcResult) {
         return "CalcResult";
-
+    }
+    if (m_state == UndefinedResult) {
+        return "UndefinedResult";
     }
     return "";
 }
