@@ -180,5 +180,25 @@ void EngineTests::divisionByZeroTest()
     QCOMPARE(engine.number1(), "");
     QCOMPARE(engine.number2(), "");
 
+}
+
+void EngineTests::priorZeroTest()
+{
+    Engine engine;
+
+    engine.addDigit('0');
+    engine.addDigit('9');
+    QCOMPARE(engine.number1(), "9");
+
+    engine.addOperator('+');
+
+    engine.addDigit('0');
+    engine.addDigit('.');
+    engine.addDigit('9');
+    QCOMPARE(engine.number2(), "0.9");
+
+    engine.addOperator('=');
+    QCOMPARE(engine.number1(), "9.9");
+
 
 }

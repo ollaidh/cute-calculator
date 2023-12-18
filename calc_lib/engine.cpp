@@ -26,12 +26,18 @@ void Engine::addDigit(char digit)
         if (digit == '.' and m_number1.find('.') != std::string::npos) {
             return;
         }
+        if (m_number1 == "0" and digit != '.') {
+            m_number1 = "";
+        }
         m_number1.push_back(digit);
 
     }
     else if (m_state == State::GettingNumber2) {
         if (digit == '.' and m_number2.find('.') != std::string::npos) {
             return;
+        }
+        if (m_number2 == "0" and digit != '.') {
+            m_number2 = "";
         }
         m_number2.push_back(digit);
     }
