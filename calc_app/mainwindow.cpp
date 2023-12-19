@@ -72,13 +72,13 @@ void MainWindow::onButtonClicked()
 
     QPushButton *senderButton = qobject_cast<QPushButton*>(sender());
     Q_ASSERT(senderButton != nullptr);
-    QString buttonName = senderButton->objectName();
+    std::string buttonName = (senderButton->objectName()).toStdString();
     qDebug() << "Button clicked: " << buttonName;  // optional - to show in debugger
-    if (digitButtons.find(buttonName.toStdString()) != digitButtons.end()) {
-        m_engine.addDigit(digitButtons[buttonName.toStdString()]);
+    if (digitButtons.find(buttonName) != digitButtons.end()) {
+        m_engine.addDigit(digitButtons[buttonName]);
     }
-    else if (operatorButtons.find(buttonName.toStdString()) != operatorButtons.end()) {
-        m_engine.addOperator(operatorButtons[buttonName.toStdString()]);
+    else if (operatorButtons.find(buttonName) != operatorButtons.end()) {
+        m_engine.addOperator(operatorButtons[buttonName]);
 
     }
 
