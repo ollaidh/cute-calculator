@@ -8,11 +8,26 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->setWindowTitle("Cute Calculator by Ollaidh");
+
+    // All buttons have the same type QPushButton, so use findChildren to get list of all pushButtons:
     QList<QPushButton *> buttonList = findChildren<QPushButton *>();
 
+    // Connect all pushButtons:
     for (QPushButton *button : buttonList) {
         connect(button, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
     }
+
+    // Set right + center verticcal alignments for labels:
+    ui->num1Label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    ui->num2Label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
+    // Make bold font and set it for result label:
+    QFont resultFont;
+    resultFont.setBold(true);
+    resultFont.setPixelSize(25); // this for setting font size
+    ui->num1Label->setFont(resultFont);
+
 }
 
 MainWindow::~MainWindow()
