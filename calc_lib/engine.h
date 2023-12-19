@@ -7,7 +7,7 @@ class Engine
     {
         GettingNumber1,
         GettingNumber2,
-        CalcResult,
+        ResultCalculated,
         UndefinedResult
     };
 
@@ -15,7 +15,7 @@ public:
     Engine();
     void addDigit(char digit);
     void addOperator(char op);
-    std::string calc();
+    std::string calculate();
 
     std::string number1() const;
 

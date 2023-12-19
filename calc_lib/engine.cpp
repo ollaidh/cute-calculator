@@ -41,7 +41,7 @@ void Engine::addDigit(char digit)
         }
         m_number2.push_back(digit);
     }
-    else if (m_state == State::CalcResult) {
+    else if (m_state == State::ResultCalculated) {
 //        m_number1 = m_number2;
         m_state = State::GettingNumber2;
         m_number2.clear();
@@ -66,7 +66,7 @@ void Engine::addOperator(char op)
     }
 
     if (op == 'B') {
-        if (m_state == State::CalcResult) {
+        if (m_state == State::ResultCalculated) {
             m_number2.clear();
             m_state = State::GettingNumber2;
         }
@@ -82,8 +82,8 @@ void Engine::addOperator(char op)
 
     if (m_state == State::GettingNumber2) {
         if (m_number1 != "" and m_number2 != ""){
-           m_state = State::CalcResult;
-           m_number1 = calc();
+           m_state = State::ResultCalculated;
+           m_number1 = calculate();
        }
         if (op != '=') {
            m_op = op;
@@ -94,7 +94,7 @@ void Engine::addOperator(char op)
             if (m_number1 != "" and m_number2 == "") {
                 m_number2 = "0";
                 m_op = '+';
-                m_state = State::CalcResult;
+                m_state = State::ResultCalculated;
 
             }
         }
@@ -104,9 +104,9 @@ void Engine::addOperator(char op)
             m_state = State::GettingNumber2;
         }
     }
-    else if (m_state == State::CalcResult) {
+    else if (m_state == State::ResultCalculated) {
         if (op == '=') {
-            m_number1 = calc();
+            m_number1 = calculate();
         }
         else {
             m_op = op;
@@ -116,7 +116,7 @@ void Engine::addOperator(char op)
     }
 }
 
-std::string Engine::calc()
+std::string Engine::calculate()
 {
     std::string result;
     if (m_op == '+') {
@@ -174,7 +174,7 @@ std::string Engine::state() const
     if (m_state == GettingNumber2) {
         return "GettingNumber2";
     }
-    if (m_state == CalcResult) {
+    if (m_state == ResultCalculated) {
         return "CalcResult";
     }
     if (m_state == UndefinedResult) {

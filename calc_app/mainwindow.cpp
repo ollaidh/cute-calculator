@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Make bold font and set it for result label:
     QFont resultFont;
     resultFont.setBold(true);
-    resultFont.setPixelSize(25); // this for setting font size
+    resultFont.setPixelSize(25);
     ui->num1Label->setFont(resultFont);
 
 }
