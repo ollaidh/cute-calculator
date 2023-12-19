@@ -17,8 +17,8 @@ void Engine::shrinkPeriods() {
 void Engine::addDigit(char digit)
 {
     if  (m_state == State::UndefinedResult) {
-        m_number1 = "";
-        m_number2 = "";
+        m_number1.clear();
+        m_number2.clear();
         m_state = State::GettingNumber1;
     }
 
@@ -27,7 +27,7 @@ void Engine::addDigit(char digit)
             return;
         }
         if (m_number1 == "0" and digit != '.') {
-            m_number1 = "";
+            m_number1.clear();
         }
         m_number1.push_back(digit);
 
@@ -37,14 +37,14 @@ void Engine::addDigit(char digit)
             return;
         }
         if (m_number2 == "0" and digit != '.') {
-            m_number2 = "";
+            m_number2.clear();
         }
         m_number2.push_back(digit);
     }
     else if (m_state == State::CalcResult) {
 //        m_number1 = m_number2;
         m_state = State::GettingNumber2;
-        m_number2 = "";
+        m_number2.clear();
         m_number2.push_back(digit);
     }
 }
@@ -58,8 +58,8 @@ void Engine::addOperator(char op)
     }
 
     if (op == 'C') {
-        m_number1 = "";
-        m_number2 = "";
+        m_number1.clear();
+        m_number2.clear();
         m_op = '\0';
         m_state = State::GettingNumber1;
         return;
@@ -67,14 +67,14 @@ void Engine::addOperator(char op)
 
     if (op == 'B') {
         if (m_state == State::CalcResult) {
-            m_number2 = "";
+            m_number2.clear();
             m_state = State::GettingNumber2;
         }
         else if (m_state == State::GettingNumber1) {
-           m_number1 = "";
+           m_number1.clear();
         }
         else if (m_state == State::GettingNumber2) {
-           m_number2 = "";
+           m_number2.clear();
         }
         return;
 
@@ -100,7 +100,7 @@ void Engine::addOperator(char op)
         }
         else {
             m_op = op;
-            m_number2 = "";
+            m_number2.clear();
             m_state = State::GettingNumber2;
         }
     }
@@ -110,7 +110,7 @@ void Engine::addOperator(char op)
         }
         else {
             m_op = op;
-            m_number2 = "";
+            m_number2.clear();
             m_state = State::GettingNumber2;
         }
     }
