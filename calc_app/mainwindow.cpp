@@ -46,7 +46,7 @@ void MainWindow::refreshLabels()
 
 void MainWindow::onButtonClicked()
 {
-    std::map <std::string, char> digitButtons = {
+    static std::map <std::string, char> digitButtons = {
         {"onePushButton", '1'},
         {"twoPushButton", '2'},
         {"threePushButton", '3'},
@@ -59,7 +59,7 @@ void MainWindow::onButtonClicked()
         {"zeroPushButton", '0'},
         {"periodPushButton", '.'}
     };
-    std::map <std::string, char> operatorButtons = {
+    static std::map <std::string, char> operatorButtons = {
         {"plusPushButton", '+'},
         {"minusPushButton", '-'},
         {"multPushButton", '*'},
