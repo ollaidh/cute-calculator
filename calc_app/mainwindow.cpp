@@ -52,6 +52,16 @@ void MainWindow::refreshLabels()
 
 }
 
+
+void MainWindow::enableArithmeticButtons(bool enable)
+{
+    ui->plusPushButton->setEnabled(enable);
+    ui->minusPushButton->setEnabled(enable);
+    ui->multPushButton->setEnabled(enable);
+    ui->divPushButton->setEnabled(enable);
+
+}
+
 void MainWindow::onButtonClicked()
 {
     static std::map <std::string, char> digitButtons = {
@@ -91,5 +101,12 @@ void MainWindow::onButtonClicked()
     }
 
     refreshLabels();
+
+    if (m_engine.state() == Engine::UndefinedResult) {
+        enableArithmeticButtons(false);
+    }
+    else {
+        enableArithmeticButtons(true);
+    }
 }
 

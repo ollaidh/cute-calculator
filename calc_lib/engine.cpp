@@ -61,9 +61,9 @@ void Engine::addOperator(char op)
 {
     shrinkPeriods();
 
-    if  (m_state == State::UndefinedResult) {
-        op = 'C';
-    }
+//    if  (m_state == State::UndefinedResult) {
+//        op = 'C';
+//    }
 
     if (op == 'C') {
         m_number1.clear();
@@ -141,7 +141,8 @@ std::string Engine::calculate()
             result = std::to_string(std::stod(m_number1) / std::stod(m_number2));
         }
         else {
-            result = "Division by Zero: Undefined Result";
+            result = "Division by Zero: Undefined";
+            m_number2.clear();
             m_state = State::UndefinedResult;
         }
     }

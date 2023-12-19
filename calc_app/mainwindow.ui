@@ -243,9 +243,9 @@
     <widget class="QLabel" name="num1Label">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>0</x>
        <y>0</y>
-       <width>251</width>
+       <width>361</width>
        <height>51</height>
       </rect>
      </property>

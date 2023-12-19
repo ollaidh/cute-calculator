@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPushButton>
 
 #include "engine.h"
 
@@ -20,6 +21,7 @@ public:
 private slots:
     void onButtonClicked();
     void refreshLabels();
+    void enableArithmeticButtons(bool);
 
 private:
     Ui::MainWindow *ui;
