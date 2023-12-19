@@ -240,7 +240,7 @@
       <enum>QFrame::Raised</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="num1_label">
+    <widget class="QLabel" name="num1Label">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -269,7 +269,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="num2_label">
+    <widget class="QLabel" name="num2Label">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -335,7 +335,7 @@
      <string>.</string>
     </property>
    </widget>
-   <widget class="QLabel" name="op_label">
+   <widget class="QLabel" name="opLabel">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -348,7 +348,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="state_label">
+   <widget class="QLabel" name="stateLabel">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -408,8 +408,8 @@
    <zorder>backPushButton</zorder>
    <zorder>label</zorder>
    <zorder>periodPushButton</zorder>
-   <zorder>op_label</zorder>
-   <zorder>state_label</zorder>
+   <zorder>opLabel</zorder>
+   <zorder>stateLabel</zorder>
    <zorder>label_op_2</zorder>
    <zorder>label_state_2</zorder>
   </widget>

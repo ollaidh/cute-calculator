@@ -37,16 +37,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::refreshLabels()
 {
-    ui->num1_label->setText(QString::fromStdString(m_engine.number1()));
-    ui->num2_label->setText(QString::fromStdString(m_engine.number2()));
-    ui->op_label->setText(QString::fromStdString(m_engine.op()));
-    ui->state_label->setText(QString::fromStdString(m_engine.state()));
+    ui->num1Label->setText(QString::fromStdString(m_engine.number1()));
+    ui->num2Label->setText(QString::fromStdString(m_engine.number2()));
+    ui->opLabel->setText(QString::fromStdString(m_engine.op()));
+    ui->stateLabel->setText(QString::fromStdString(m_engine.state()));
 
 }
 
 void MainWindow::onButtonClicked()
 {
-    std::map <std::string, char> digit_buttons = {
+    std::map <std::string, char> digitButtons = {
         {"onePushButton", '1'},
         {"twoPushButton", '2'},
         {"threePushButton", '3'},
@@ -59,7 +59,7 @@ void MainWindow::onButtonClicked()
         {"zeroPushButton", '0'},
         {"periodPushButton", '.'}
     };
-    std::map <std::string, char> operator_buttons = {
+    std::map <std::string, char> operatorButtons = {
         {"plusPushButton", '+'},
         {"minusPushButton", '-'},
         {"multPushButton", '*'},
@@ -70,17 +70,15 @@ void MainWindow::onButtonClicked()
 
     };
 
-    std::vector <std::string> clean_buttons = {"cleanPushButton", "backPushButton"};
-
     QPushButton *senderButton = qobject_cast<QPushButton*>(sender());
     Q_ASSERT(senderButton != nullptr);
     QString buttonName = senderButton->objectName();
     qDebug() << "Button clicked: " << buttonName;  // optional - to show in debugger
-    if (digit_buttons.find(buttonName.toStdString()) != digit_buttons.end()) {
-        m_engine.addDigit(digit_buttons[buttonName.toStdString()]);
+    if (digitButtons.find(buttonName.toStdString()) != digitButtons.end()) {
+        m_engine.addDigit(digitButtons[buttonName.toStdString()]);
     }
-    else if (operator_buttons.find(buttonName.toStdString()) != operator_buttons.end()) {
-        m_engine.addOperator(operator_buttons[buttonName.toStdString()]);
+    else if (operatorButtons.find(buttonName.toStdString()) != operatorButtons.end()) {
+        m_engine.addOperator(operatorButtons[buttonName.toStdString()]);
 
     }
 

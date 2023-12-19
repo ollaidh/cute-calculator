@@ -140,8 +140,8 @@ std::string Engine::calc()
     else {
         result = "";
     }
-    result.erase ( result.find_last_not_of('0') + 1, std::string::npos );
-    result.erase ( result.find_last_not_of('.') + 1, std::string::npos );
+    result.erase(result.find_last_not_of('0') + 1, std::string::npos);
+    result.erase(result.find_last_not_of('.') + 1, std::string::npos);
     return result;
 
 }
@@ -159,7 +159,7 @@ std::string Engine::number2() const
 std::string Engine::op() const
 {
     if (m_op == '\0') {
-        return "";
+        return {};
     }
     std::string result;
     result.push_back(m_op);
