@@ -3,6 +3,9 @@
 
 class Engine
 {
+
+public:
+
     enum State
     {
         GettingNumber1,
@@ -11,7 +14,6 @@ class Engine
         UndefinedResult
     };
 
-public:
     Engine();
     void addDigit(char digit);
     void addOperator(char op);
@@ -23,7 +25,7 @@ public:
 
     std::string op() const;
 
-    std::string state() const;
+    State state() const;
 
 private:
     std::string m_number1;

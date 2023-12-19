@@ -166,20 +166,8 @@ std::string Engine::op() const
     return result;
 }
 
-std::string Engine::state() const
+Engine::State Engine::state() const
 {
-    if (m_state == GettingNumber1) {
-        return "GettingNumber1";
-    }
-    if (m_state == GettingNumber2) {
-        return "GettingNumber2";
-    }
-    if (m_state == ResultCalculated) {
-        return "CalcResult";
-    }
-    if (m_state == UndefinedResult) {
-        return "UndefinedResult";
-    }
-    return "";
+    return m_state;
 }
 

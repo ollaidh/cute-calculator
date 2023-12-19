@@ -38,10 +38,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::refreshLabels()
 {
+    static std::map<Engine::State, std::string> stateRepresentation = {
+        {Engine::GettingNumber1, "GettingNumber1"},
+        {Engine::GettingNumber2, "GettingNumber2"},
+        {Engine::ResultCalculated, "ResultCalculated"},
+        {Engine::UndefinedResult, "UndefinedResult"}
+    };
+
     ui->num1Label->setText(QString::fromStdString(m_engine.number1()));
     ui->num2Label->setText(QString::fromStdString(m_engine.number2()));
     ui->opLabel->setText(QString::fromStdString(m_engine.op()));
-    ui->stateLabel->setText(QString::fromStdString(m_engine.state()));
+    ui->stateLabel->setText(QString::fromStdString(stateRepresentation[m_engine.state()]));
 
 }
 
