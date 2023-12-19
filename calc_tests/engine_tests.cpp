@@ -202,3 +202,32 @@ void EngineTests::priorZeroTest()
 
 
 }
+
+void EngineTests::priorPeriodTest()
+{
+    Engine engine;
+
+    engine.addDigit('.');
+
+    QCOMPARE(engine.number1(), "0.");
+
+    engine.addDigit('9');
+    engine.addOperator('+');
+
+    QCOMPARE(engine.number1(), "0.9");
+
+    engine.addDigit('.');
+    engine.addDigit('2');
+
+    QCOMPARE(engine.number2(), "0.2");
+
+    engine.addOperator('=');
+
+    QCOMPARE(engine.number1(), "1.1");
+
+    engine.addDigit('.');
+    engine.addDigit('8');
+
+    QCOMPARE(engine.number2(), "0.8");
+
+}

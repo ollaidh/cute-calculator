@@ -29,6 +29,9 @@ void Engine::addDigit(char digit)
         if (m_number1 == "0" and digit != '.') {
             m_number1.clear();
         }
+        if (m_number1 == "" and digit == '.') {
+            m_number1 = "0";
+        }
         m_number1.push_back(digit);
 
     }
@@ -39,12 +42,17 @@ void Engine::addDigit(char digit)
         if (m_number2 == "0" and digit != '.') {
             m_number2.clear();
         }
+        if (m_number2 == "" and digit == '.') {
+            m_number2 = "0";
+        }
         m_number2.push_back(digit);
     }
     else if (m_state == State::ResultCalculated) {
-//        m_number1 = m_number2;
         m_state = State::GettingNumber2;
         m_number2.clear();
+        if (digit == '.') {
+            m_number2 = "0";
+        }
         m_number2.push_back(digit);
     }
 }

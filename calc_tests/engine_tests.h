@@ -13,4 +13,5 @@ private slots:
     void twoOperatorsInaRowTest();
     void divisionByZeroTest();
     void priorZeroTest();
+    void priorPeriodTest();
 };
