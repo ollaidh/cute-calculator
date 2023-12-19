@@ -7,26 +7,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->onePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->twoPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->threePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->fourPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->fivePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->sixPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->sevenPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->eightPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->ninePushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->zeroPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->periodPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
 
-    connect(ui->plusPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->minusPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->multPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->divPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->eqPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    QList<QPushButton *> buttonList = findChildren<QPushButton *>();
 
-    connect(ui->cleanPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
-    connect(ui->backPushButton, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    for (QPushButton *button : buttonList) {
+        connect(button, &QAbstractButton::clicked, this, &MainWindow::onButtonClicked);
+    }
 }
 
 MainWindow::~MainWindow()
