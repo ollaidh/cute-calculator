@@ -45,7 +45,12 @@ void MainWindow::refreshLabels()
         {Engine::UndefinedResult, "UndefinedResult"}
     };
 
-    ui->num1Label->setText(QString::fromStdString(m_engine.number1()));
+    if (m_engine.state() == Engine::UndefinedResult) {
+        ui->num1Label->setText(QString::fromStdString("Division by zero: Undefined"));
+    }
+    else {
+        ui->num1Label->setText(QString::fromStdString(m_engine.number1()));
+    }
     ui->num2Label->setText(QString::fromStdString(m_engine.number2()));
     ui->opLabel->setText(QString::fromStdString(m_engine.op()));
     ui->stateLabel->setText(QString::fromStdString(stateRepresentation[m_engine.state()]));

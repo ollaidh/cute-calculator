@@ -142,7 +142,7 @@ std::string Engine::calculate()
             result = std::to_string(std::stod(m_number1) / std::stod(m_number2));
         }
         else {
-            result = "Division by Zero: Undefined";
+            result = "";
             m_number2.clear();
             m_state = State::UndefinedResult;
         }
