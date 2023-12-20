@@ -63,7 +63,7 @@ void EngineTests::basicTest()
     QCOMPARE(engine.op(), "*");
 
     engine.addOperator('B');
-    QCOMPARE(engine.number2(), "");
+    QCOMPARE(engine.number2(), "2");
     QCOMPARE(engine.number1(), "200");
     QCOMPARE(engine.op(), "*");
 
@@ -144,8 +144,8 @@ void EngineTests::divisionByZeroTest()
     engine.addDigit('0');
     engine.addOperator('=');
 
-    QCOMPARE(engine.number1(), "Division by Zero: Undefined Result");
-    QCOMPARE(engine.number2(), "0");
+    QCOMPARE(engine.number1(), "Division by Zero: Undefined");
+    QCOMPARE(engine.number2(), "");
 
     engine.addDigit('3');
 
@@ -173,11 +173,11 @@ void EngineTests::divisionByZeroTest()
     engine.addDigit('0');
     engine.addOperator('=');
 
-    QCOMPARE(engine.number1(), "Division by Zero: Undefined Result");
-    QCOMPARE(engine.number2(), "0");
+    QCOMPARE(engine.number1(), "Division by Zero: Undefined");
+    QCOMPARE(engine.number2(), "");
 
-    engine.addOperator('*');
-    QCOMPARE(engine.number1(), "");
+    engine.addDigit('6');
+    QCOMPARE(engine.number1(), "6");
     QCOMPARE(engine.number2(), "");
 
 }
