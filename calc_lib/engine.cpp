@@ -61,10 +61,6 @@ void Engine::addOperator(char op)
 {
     shrinkPeriods();
 
-//    if  (m_state == State::UndefinedResult) {
-//        op = 'C';
-//    }
-
     if (op == 'C') {
         m_number1.clear();
         m_number2.clear();
@@ -74,15 +70,20 @@ void Engine::addOperator(char op)
     }
 
     if (op == 'B') {
-        if (m_state == State::ResultCalculated) {
-            m_number2.clear();
-            m_state = State::GettingNumber2;
-        }
-        else if (m_state == State::GettingNumber1) {
-           m_number1.clear();
+        if (m_state == State::GettingNumber1) {
+            if (m_number1.length() > 0) {
+
+                m_number1.pop_back();
+            }
         }
         else if (m_state == State::GettingNumber2) {
-           m_number2.clear();
+           if (m_number2.length() > 0) {
+               m_number2.pop_back();
+           }
+           else {
+               m_op = '\0';
+               m_state = State::GettingNumber1;
+           }
         }
         return;
 

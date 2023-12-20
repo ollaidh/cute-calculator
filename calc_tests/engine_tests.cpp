@@ -44,28 +44,58 @@ void EngineTests::basicTest()
     QCOMPARE(engine.number1(), "");
     QCOMPARE(engine.op(), "");
 
+
     engine.addDigit('1');
     engine.addDigit('0');
     engine.addOperator('*');
     QCOMPARE(engine.op(), "*");
     QCOMPARE(engine.number1(), "10");
-    engine.addDigit('5');
-    engine.addOperator('B');
+}
 
-    QCOMPARE(engine.op(), "*");
-    QCOMPARE(engine.number1(), "10");
-    QCOMPARE(engine.number2(), "");
-    engine.addDigit('2');
+void EngineTests::backTest()
+{
+    Engine engine;
+
+    engine.addDigit('1');
     engine.addDigit('0');
-    engine.addOperator('=');
-    QCOMPARE(engine.number2(), "20");
-    QCOMPARE(engine.number1(), "200");
-    QCOMPARE(engine.op(), "*");
+    engine.addOperator('B');
+
+    QCOMPARE(engine.number1(), "1");
 
     engine.addOperator('B');
-    QCOMPARE(engine.number2(), "2");
-    QCOMPARE(engine.number1(), "200");
-    QCOMPARE(engine.op(), "*");
+
+    QCOMPARE(engine.number1(), "");
+
+    engine.addOperator('B');
+
+    QCOMPARE(engine.number1(), "");
+
+
+    engine.addDigit('4');
+    engine.addDigit('2');
+    engine.addOperator('+');
+    engine.addDigit('1');
+    engine.addDigit('6');
+    engine.addOperator('B');
+
+    QCOMPARE(engine.number2(), "1");
+
+    engine.addOperator('B');
+
+    QCOMPARE(engine.number2(), "");
+
+    engine.addOperator('B');
+
+    QCOMPARE(engine.number2(), "");
+
+    engine.addDigit('1');
+    engine.addOperator('=');
+    QCOMPARE(engine.number1(), "421");
+    engine.addOperator('+');
+    engine.addDigit('2');
+    engine.addDigit('3');
+
+    QCOMPARE(engine.number2(), "23");
 
 
 }

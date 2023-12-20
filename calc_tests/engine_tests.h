@@ -8,6 +8,7 @@ public:
 
 private slots:
     void basicTest();
+    void backTest();
     void onlyFirstNumberTest();
     void numberWithPeriodTest();
     void twoOperatorsInaRowTest();
